@@ -23,10 +23,8 @@ function SGDSOFT_On(_eventName, _webSocket, _callback) {
         } else {
             try{
                 const msgpackData = msgpack.decode(data);
-                console.log(msgpackData);
                 if (_eventName == msgpackData.SGDSOFT_EventName) {
                     const parsedData = JSON.parse(msgpackData.SGDSOFT_data);
-                    console.log(parsedData);
                     return _callback(parsedData);
                 }
             }catch(err){
