@@ -87,8 +87,11 @@ serverConnect.wssExport().on('connection', function (ws) {
             room.clients = room.clients.filter(client => client !== ws);
 
             if (room.clients.length == 0 && room.info.locked) {
-                rooms.delete(roomKey);
-                //delete rooms[roomKey];
+               // rooms.delete(roomKey);
+                delete rooms[roomKey];
+            } else if (room.clients.length == 0 && room.info.locked == false) {
+                // rooms.delete(roomKey);
+                delete rooms[roomKey];
             } else {
                 Room(roomKey);
             }
